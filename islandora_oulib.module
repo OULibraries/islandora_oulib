@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function islandora_oulib_theme_registry_alter(&$theme_registry) {
+
+  // override template for Islandora collection wrappers
+  // this will only work with the "legacy backend" mode
+  if (isset($theme_registry['islandora_basic_collection_wrapper'])) {
+    $module_path = drupal_get_path('module', 'islandora_oulib');
+    $theme_registry['islandora_basic_collection_wrapper']['theme path'] = $module_path;
+    $theme_registry['islandora_basic_collection_wrapper']['template'] = $module_path . '/theme/islandora-basic-collection-wrapper';
+  }
+}
